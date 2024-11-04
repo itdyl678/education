@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itflyket.education.mapper.UpdateUserMapper">
+    <update id="updateUser" parameterType="User">
+        UPDATE users
+        <set>
+            <if test="username != null and username != ''">username = #{username},</if>
+            <if test="password != null and password != ''">password = #{password},</if>
+            <if test="age != null">age = #{age},</if>
+            <if test="gender != null and gender != ''">gender = #{gender},</if>
+            <if test="email != null and email != ''">email = #{email},</if>
+            <if test="phone != null and phone != ''">phone = #{phone},</if>
+            <if test="idCard != null and idCard != ''">idCard = #{idCard},</if>
+            <if test="avatar != null and avatar != ''">avatar = #{avatar},</if>
+            <!--            <if test="status != null and status != ''">status = #{status},</if>-->
+            <if test="updatedAt != null">updatedAt = #{updatedAt}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <update id="transForUser" parameterType="User">
+        UPDATE users
+        <set>
+            <if test="status != null and status != ''">status = #{status},</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+</mapper>
