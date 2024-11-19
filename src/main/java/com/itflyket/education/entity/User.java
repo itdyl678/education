@@ -1,12 +1,17 @@
 package com.itflyket.education.entity;
 
 
+<<<<<<< HEAD
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.util.Date;
 
 @TableName("users")  // 指定数据库中的表名为 users
+=======
+import java.util.Date;
+
+>>>>>>> 18415b2107057a21876fda6d6c1e3377026d1b61
 public class User {
 
     private Long id;
@@ -16,6 +21,7 @@ public class User {
     private String gender;
     private String email;
     private String phone;
+<<<<<<< HEAD
     @TableField("idcard")  // 映射数据库中的字段名为 idcard
     private String idCard;
     @TableField("createdAt")  // 映射数据库中的字段名为 createdAt
@@ -23,13 +29,23 @@ public class User {
     private String status;
     private String avatar;
     @TableField("updatedAt")  // 映射数据库中的字段名为 updatedAt
+=======
+    private String idCard;
+    private Date createdAt; // 使用 Date 类型
+    private String status;
+    private String avatar;
+>>>>>>> 18415b2107057a21876fda6d6c1e3377026d1b61
     private Date updatedAt; // 使用 Date 类型
 
 
     // 新增的字段
+<<<<<<< HEAD
     @TableField("createdAt")  // 映射数据库中的字段名为 createdAt
     private String formattedCreatedAt;
     @TableField("updatedAt")  // 映射数据库中的字段名为 updatedAt
+=======
+    private String formattedCreatedAt;
+>>>>>>> 18415b2107057a21876fda6d6c1e3377026d1b61
     private String formattedUpdatedAt;
 
 

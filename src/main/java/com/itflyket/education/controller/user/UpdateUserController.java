@@ -1,6 +1,9 @@
 package com.itflyket.education.controller.user;
 
+<<<<<<< HEAD
 import com.itflyket.education.dto.UserDTO;
+=======
+>>>>>>> 18415b2107057a21876fda6d6c1e3377026d1b61
 import com.itflyket.education.entity.User;
 import com.itflyket.education.service.UpdateUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +11,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+<<<<<<< HEAD
 import java.time.LocalDateTime;
 
+=======
+>>>>>>> 18415b2107057a21876fda6d6c1e3377026d1b61
 @RestController
 @RequestMapping("/users")
 public class UpdateUserController {
@@ -18,11 +24,18 @@ public class UpdateUserController {
     private UpdateUserService updateUserService;
 
     @PutMapping("/updateUser/{id}")
+<<<<<<< HEAD
     public ResponseEntity<String> updateUser(@PathVariable Long id, @RequestBody UserDTO user){
         // 将路径中的 id 设置到 user 对象中
         user.setId(id);
         //将本地时间放入user中进行存储
         user.setUpdatedAt(LocalDateTime.now());
+=======
+    @CrossOrigin
+    public ResponseEntity<String> updateUser(@PathVariable Long id, @RequestBody User user){
+        // 将路径中的 id 设置到 user 对象中
+        user.setId(id);
+>>>>>>> 18415b2107057a21876fda6d6c1e3377026d1b61
 
         int result = this.updateUserService.updateUser(user);
 
