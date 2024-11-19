@@ -1,32 +1,26 @@
 package com.itflyket.education.controller.user;
 
-<<<<<<< HEAD
+
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.itflyket.education.entity.User;
 import com.itflyket.education.mapper.GetUserAllMapper;
-import com.itflyket.education.service.GetUserAllService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-=======
-import com.itflyket.education.entity.User;
-import com.itflyket.education.service.GetUserAllService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
->>>>>>> 18415b2107057a21876fda6d6c1e3377026d1b61
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/users")
 public class GetUserAllController {
 
     @Autowired
-<<<<<<< HEAD
+
     private GetUserAllMapper getUserAllMapper;
 
     @GetMapping("/getUserAll")
@@ -34,7 +28,7 @@ public class GetUserAllController {
                                   @RequestParam(defaultValue = "10") Integer pageSize, // 每页大小，默认为10
                                   @RequestParam(required = false) String search           // 搜索关键字，可选
     ) {
-        System.out.println(currentPage+"[[[[[[[[[["+pageSize+"dddd"+search);
+        System.out.println(currentPage + "[[[[[[[[[[" + pageSize + "dddd" + search);
         Page<User> page = new Page<>(currentPage, pageSize);
         QueryWrapper<User> queryWrapper = new QueryWrapper<>(); // 创建查询条件包装器（如需要可以添加条件）
 
@@ -44,16 +38,7 @@ public class GetUserAllController {
         }
 
         return getUserAllMapper.selectPage(page, queryWrapper); // 直接调用 Mapper 层的分页方法
-=======
-    private GetUserAllService getUserAllService;
 
-    @GetMapping("/getUserAll")
-    @CrossOrigin
-    public List<User> getUserAll(){
-        List<User> userAll = this.getUserAllService.getUserAll();
-        System.out.println("--------------------------------------");
-        System.out.println(userAll);
-        return userAll;
->>>>>>> 18415b2107057a21876fda6d6c1e3377026d1b61
+
     }
 }

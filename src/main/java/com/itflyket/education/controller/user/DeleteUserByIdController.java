@@ -13,10 +13,10 @@ public class DeleteUserByIdController {
     private DeleteUserByIdService deleteUserByIdService;
 
     @DeleteMapping("/{id}")
-<<<<<<< HEAD
-=======
+
+
     @CrossOrigin
->>>>>>> 18415b2107057a21876fda6d6c1e3377026d1b61
+
     public ResponseEntity<Void> deleteUserById(@PathVariable Long id){
         this.deleteUserByIdService.deleteUserById(id);
         return ResponseEntity.noContent().build();  //返回204， NO Content

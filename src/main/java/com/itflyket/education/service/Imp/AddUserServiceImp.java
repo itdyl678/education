@@ -33,7 +33,6 @@ public class AddUserServiceImp implements AddUserService {
         Calendar calendar = Calendar.getInstance();
 
         // 调整 createdAt
-<<<<<<< HEAD
         if (originalCreatedAt != null) {
             calendar.setTime(originalCreatedAt);
             calendar.add(Calendar.HOUR, -8); // 调整为东八区时间
@@ -52,7 +51,7 @@ public class AddUserServiceImp implements AddUserService {
         } else {
             user.setUpdatedAt(new Date()); // 如果 updatedAt 为空，设置为当前时间
         }
-=======
+
         calendar.setTime(originalCreatedAt);
         calendar.add(Calendar.HOUR, -8); // 调整为东八区时间
         Date adjustedCreatedAt = calendar.getTime();
@@ -63,7 +62,6 @@ public class AddUserServiceImp implements AddUserService {
         calendar.add(Calendar.HOUR, -8); // 调整为东八区时间
         Date adjustedUpdatedAt = calendar.getTime();
         user.setUpdatedAt(adjustedUpdatedAt);
->>>>>>> 18415b2107057a21876fda6d6c1e3377026d1b61
 
         // 将用户信息存入数据库
         this.addUserMapper.addUser(user);

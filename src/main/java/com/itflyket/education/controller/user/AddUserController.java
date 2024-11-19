@@ -16,10 +16,9 @@ public class AddUserController {
     @Autowired
     private AddUserService addUserService;
     @PostMapping("/addUser")
-<<<<<<< HEAD
-=======
+
     @CrossOrigin
->>>>>>> 18415b2107057a21876fda6d6c1e3377026d1b61
+
     public ResponseEntity<String> addUser(@RequestBody User user) throws ParseException {
         System.out.println("-----========================");
         System.out.println(user);

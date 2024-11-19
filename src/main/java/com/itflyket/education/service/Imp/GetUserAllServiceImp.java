@@ -1,11 +1,8 @@
 package com.itflyket.education.service.Imp;
 
-<<<<<<< HEAD
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-=======
->>>>>>> 18415b2107057a21876fda6d6c1e3377026d1b61
 import com.itflyket.education.entity.User;
 import com.itflyket.education.mapper.GetUserAllMapper;
 import com.itflyket.education.service.GetUserAllService;
@@ -20,14 +17,12 @@ public class GetUserAllServiceImp implements GetUserAllService {
 
     @Autowired
     private GetUserAllMapper getUserAllMapper;
-<<<<<<< HEAD
 
     /**
      * 时间处理
      * @return
      */
-=======
->>>>>>> 18415b2107057a21876fda6d6c1e3377026d1b61
+
     @Override
     public List<User> getUserAll() {
         List<User> users = this.getUserAllMapper.getUserAll();
@@ -44,8 +39,6 @@ public class GetUserAllServiceImp implements GetUserAllService {
 
         return users;
         }
-<<<<<<< HEAD
-
 
     /**
      * 分页查询
@@ -60,6 +53,4 @@ public class GetUserAllServiceImp implements GetUserAllService {
         return getUserAllMapper.selectPage(page, queryWrapper); // 执行分页查询
     }
 
-=======
->>>>>>> 18415b2107057a21876fda6d6c1e3377026d1b61
 }

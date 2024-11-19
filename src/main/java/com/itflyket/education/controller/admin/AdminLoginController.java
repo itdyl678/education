@@ -7,11 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-<<<<<<< HEAD
-import java.util.Arrays;
 
-=======
->>>>>>> 18415b2107057a21876fda6d6c1e3377026d1b61
+
 @RestController
 @RequestMapping("/admin")
 public class AdminLoginController {
@@ -19,22 +16,14 @@ public class AdminLoginController {
     private AdminLoginService adminLoginService;
 
     @PostMapping("/login")
-<<<<<<< HEAD
-=======
-    @CrossOrigin
->>>>>>> 18415b2107057a21876fda6d6c1e3377026d1b61
     public ResponseEntity<Object> adminLogin(@RequestBody Admin admin) {  //将前端传过来的值封装为一个对象
         String name = admin.getName();
         String password = admin.getPassword();
         Admin admin1 = this.adminLoginService.adminLogin(name, password);
-<<<<<<< HEAD
-        if (admin1 != null){
-            String token = adminLoginService.generateToken(admin1); //生成jwt令牌
-=======
 
         if (admin1 != null){
             String token = adminLoginService.generateToken(admin1);
->>>>>>> 18415b2107057a21876fda6d6c1e3377026d1b61
+
             System.out.println(token);
             System.out.println("登录成功！");
             return ResponseEntity.ok(new LoginResponse(token, admin1.getName()));  //返回生成jwt
