@@ -83,7 +83,7 @@ public class AdminLoginServiceImp implements AdminLoginService {
      * @return true 如果密码匹配
      */
 
-    private boolean passwordMatches(String storedPassword, String rawPassword) {
+   private boolean passwordMatches(String storedPassword, String rawPassword) {
         return storedPassword.equals(rawPassword);
     }
 }

@@ -1,16 +1,21 @@
-package com.itflyket.education.entity.admin;
+package com.itflyket.education.dto;
 
+/**
+ * 登录成功后将后端的一些数据放回给前端页面
+ */
 public class LoginResponse {
     private String token;
     private String name;
+    private String avatar;
 
 
     public LoginResponse() {
     }
 
-    public LoginResponse(String token, String name) {
+    public LoginResponse(String token, String name, String avatar) {
         this.token = token;
         this.name = name;
+        this.avatar = avatar;
     }
 
     /**
@@ -45,8 +50,24 @@ public class LoginResponse {
         this.name = name;
     }
 
+    /**
+     * 获取
+     * @return avatar
+     */
+    public String getAvatar() {
+        return avatar;
+    }
+
+    /**
+     * 设置
+     * @param avatar
+     */
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
     public String toString() {
-        return "LoginResponse{token = " + token + ", name = " + name + "}";
+        return "LoginResponse{token = " + token + ", name = " + name + ", avatar = " + avatar + "}";
     }
 }
 

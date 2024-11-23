@@ -1,7 +1,7 @@
 package com.itflyket.education.controller.admin;
 
 import com.itflyket.education.entity.admin.Admin;
-import com.itflyket.education.entity.admin.LoginResponse;
+import com.itflyket.education.dto.LoginResponse;
 import com.itflyket.education.service.AdminLoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +26,7 @@ public class AdminLoginController {
 
             System.out.println(token);
             System.out.println("登录成功！");
-            return ResponseEntity.ok(new LoginResponse(token, admin1.getName()));  //返回生成jwt
+            return ResponseEntity.ok(new LoginResponse(token, admin1.getName(), admin1.getAvatar())); //返回生成jwt
         }else {
             return ResponseEntity.status(401).body("用户名或者密码有错误！");
         }

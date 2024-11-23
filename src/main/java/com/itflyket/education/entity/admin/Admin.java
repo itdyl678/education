@@ -3,13 +3,23 @@ package com.itflyket.education.entity.admin;
 public class Admin {
     private String name;
     private String password;
+    private String avatar;
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
 
     public Admin() {
     }
 
-    public Admin(String name, String password) {
+    public Admin(String name, String password,String avatar) {
         this.name = name;
         this.password = password;
+        this.avatar = avatar;
     }
 
     /**

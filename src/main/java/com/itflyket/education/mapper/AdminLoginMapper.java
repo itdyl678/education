@@ -9,5 +9,5 @@ public interface AdminLoginMapper {
 
     Admin findAdminByName(@Param("name") String name);
     //生成jwt令牌
-    public String generateToken(Admin admin);
+//    public String generateToken(Admin admin);
 }
