@@ -4,6 +4,7 @@ import com.itflyket.education.entity.User;
 import com.itflyket.education.mapper.AddUserMapper;
 import com.itflyket.education.service.AddUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
@@ -15,6 +16,9 @@ public class AddUserServiceImp implements AddUserService {
     @Autowired
     private AddUserMapper addUserMapper;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;  //密码加密
+
     /**
      * 增加用户信息
      *
@@ -24,6 +28,13 @@ public class AddUserServiceImp implements AddUserService {
     public void addUser(User user) {
         user.setStatus("1");
         user.setAvatar("url");
+
+        if (user.getPassword().length() < 60){
+            System.out.println("加密前的密码为" + user.getPassword());
+            String encodePassword = passwordEncoder.encode(user.getPassword());
+            user.setPassword(encodePassword);
+            System.out.println("加密后的用户名密码：" + user.getPassword());
+        }
 
         // 获取当前前端传来的时间
         Date originalCreatedAt = user.getCreatedAt();

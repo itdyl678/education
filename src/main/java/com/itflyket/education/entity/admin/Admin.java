@@ -1,6 +1,9 @@
 package com.itflyket.education.entity.admin;
 
+import com.itflyket.education.dto.LoginResponse;
+
 public class Admin {
+    private Long id;
     private String name;
     private String password;
     private String avatar;
@@ -16,10 +19,19 @@ public class Admin {
     public Admin() {
     }
 
-    public Admin(String name, String password,String avatar) {
+    public Admin(Long id,String name, String password, String avatar) {
         this.name = name;
         this.password = password;
         this.avatar = avatar;
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     /**

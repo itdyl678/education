@@ -4,6 +4,7 @@ package com.itflyket.education.dto;
  * 登录成功后将后端的一些数据放回给前端页面
  */
 public class LoginResponse {
+    private Long id;
     private String token;
     private String name;
     private String avatar;
@@ -12,10 +13,19 @@ public class LoginResponse {
     public LoginResponse() {
     }
 
-    public LoginResponse(String token, String name, String avatar) {
+    public LoginResponse(Long id ,String token, String name, String avatar) {
         this.token = token;
         this.name = name;
         this.avatar = avatar;
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     /**
@@ -67,7 +77,7 @@ public class LoginResponse {
     }
 
     public String toString() {
-        return "LoginResponse{token = " + token + ", name = " + name + ", avatar = " + avatar + "}";
+        return "LoginResponse{id = "+id+",token = " + token + ", name = " + name + ", avatar = " + avatar + "}";
     }
 }
 

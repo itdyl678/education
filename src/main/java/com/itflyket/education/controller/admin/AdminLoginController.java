@@ -26,7 +26,7 @@ public class AdminLoginController {
 
             System.out.println(token);
             System.out.println("登录成功！");
-            return ResponseEntity.ok(new LoginResponse(token, admin1.getName(), admin1.getAvatar())); //返回生成jwt
+            return ResponseEntity.ok(new LoginResponse(admin1.getId(), token, admin1.getName(), admin1.getAvatar())); //返回生成jwt
         }else {
             return ResponseEntity.status(401).body("用户名或者密码有错误！");
         }
