@@ -39,20 +39,29 @@ public class SecurityConfig {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // 无状态会话
                 .and()
                 .authorizeRequests()
-                .antMatchers("/users/login", "/users/register","/admin/login","/test-redis","/captcha/generate").permitAll() // 允许匿名访问的端点
+                .antMatchers("/users/**",
+                        "/admin/login",
+                        "/test-redis",
+                        "/captcha/generate",
+                        "/upload/avatar",
+                        "/avatars/**").permitAll() // 允许匿名访问的端点
                 .anyRequest().authenticated() // 其他端点需要认证
                 .and()
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class); // 添加 JWT 过滤器
 
         return http.build();
     }
+
     // 定义 CORS 配置源
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 
         // 设置允许的来源,指明前端地址
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:8081","http://localhost:8080","http://localhost:8089"));
+        configuration.setAllowedOrigins(Arrays.
+                asList("http://localhost:8081",
+                        "http://localhost:8080",
+                        "http://localhost:8089"));
 
 
         // 允许的 HTTP 方法

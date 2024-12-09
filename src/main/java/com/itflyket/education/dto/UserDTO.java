@@ -243,4 +243,23 @@ public class UserDTO {
         this.formattedUpdatedAt = formattedUpdatedAt;
     }
 
+    @Override
+    public String toString() {
+        return "UserDTO{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", age=" + age +
+                ", gender='" + gender + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", idCard='" + idCard + '\'' +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                ", formattedCreatedAt='" + formattedCreatedAt + '\'' +
+                ", status='" + status + '\'' +
+                ", avatar='" + avatar + '\'' +
+                ", formattedUpdatedAt='" + formattedUpdatedAt + '\'' +
+                '}';
+    }
 }

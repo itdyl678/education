@@ -19,7 +19,7 @@ public class KaptchaConfig {
 
         // 验证码图片样式配置
         properties.setProperty("kaptcha.border", "no"); // 不显示边框
-        properties.setProperty("kaptcha.textproducer.font.color", "black"); // 字体颜色
+        properties.setProperty("kaptcha.textproducer.font.color", "blue"); // 字体颜色
         properties.setProperty("kaptcha.image.width", "150"); // 图片宽度
         properties.setProperty("kaptcha.image.height", "50"); // 图片高度
         properties.setProperty("kaptcha.textproducer.font.size", "40"); // 字体大小

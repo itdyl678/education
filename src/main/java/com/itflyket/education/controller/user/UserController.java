@@ -1,17 +1,16 @@
 package com.itflyket.education.controller.user;
 
 import com.itflyket.education.dto.LoginResponse;
+import com.itflyket.education.dto.UserDTO;
 import com.itflyket.education.dto.UserLoginRequestDTO;
 import com.itflyket.education.result.ResponseResult;
 import com.itflyket.education.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.awt.*;
 import java.util.HashMap;
@@ -98,6 +97,23 @@ public class UserController {
             response.put("success", false);
             response.put("message", e.getMessage());
             return ResponseEntity.badRequest().body(response);
+        }
+    }
+
+    /**
+     * 根据用户的id去查询对应的用户数据
+     * @param id
+     * @return
+     */
+    @GetMapping("/{id}")
+    public ResponseEntity<UserDTO> getUserById(@PathVariable Long id){
+
+        System.out.println("plplplplplpdddddd"+id);
+        UserDTO userById = userService.getUserById(id);
+        if (userById != null){
+            return ResponseEntity.ok(userById);
+        }else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
 }

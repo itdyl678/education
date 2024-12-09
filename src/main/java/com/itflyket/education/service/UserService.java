@@ -1,6 +1,7 @@
 package com.itflyket.education.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.itflyket.education.dto.LoginResponse;
+import com.itflyket.education.dto.UserDTO;
 import com.itflyket.education.entity.User;
 
 
@@ -25,4 +26,11 @@ public interface UserService extends IService<User> {
      * @throws Exception 注册失败抛出异常
      */
     void register(String username, String phone, String password, String verificationCode, String captchaId) throws Exception;
+
+    /**
+     * 根据id查询对应的用户数据
+     * @param id
+     * @return
+     */
+    UserDTO getUserById(Long id);
 }
