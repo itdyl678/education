@@ -4,6 +4,7 @@ import com.itflyket.education.dto.UserDTO;
 import com.itflyket.education.entity.User;
 import com.itflyket.education.service.GetUserAllService;
 import com.itflyket.education.service.UpdateUserService;
+import com.itflyket.education.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +23,7 @@ public class UpdateUserController {
     private UpdateUserService updateUserService;
 
     @Autowired
-    private GetUserAllService getUserAllService;
+    private UserService userService;
 
     @PutMapping("/updateUser/{id}")
 
@@ -39,9 +40,10 @@ public class UpdateUserController {
 
         if (result > 0) {
             //更新后再调用接口从数据库中查询该用户的头像信息并返回给前端用来更新头像
-            List<User> users = getUserAllService.getUserAll();
-            System.out.println("查看更新后的用户信息："+users);
-            String avatar = users.get(Math.toIntExact(id) - 1).getAvatar(); //数据库中的索引是从0开始，索引查询时要-1
+            UserDTO userdto = userService.getUserById(id);
+            System.out.println("查看更新后的用户信息："+userdto);
+            //查询用户的头像信息,注意：不要用索引去获取用户信息，因为数据库不鞥保证数据的完整性，可能有删除操作导致索引对接不上的情况
+            String avatar = userdto.getAvatar();
             return ResponseEntity.ok(avatar);  // 返回成功的头像地址
 
         } else {
