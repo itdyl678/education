@@ -1,6 +1,5 @@
 package com.itflyket.education.dto;
 
-import java.util.Date;
 
 public class UserCommentDTO {
     private Long id;
