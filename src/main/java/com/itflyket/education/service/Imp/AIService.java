@@ -1,27 +1,29 @@
 package com.itflyket.education.service.Imp;
 
-import org.springframework.security.core.parameters.P;
+import com.itflyket.education.bigmodel.OptionalAPI;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AIService {
-    private static final String XUNFEI_API_URL = "";
-    private static final String API_KEY= "";
+    /**
+     * askAi 用于接收一个问题，并将其传递给大模型接口（OptionalAPI），返回AI的回答。
+     * @param question 用户提交的问题
+     * @return 大模型的回答
+     */
+    public String askAi(String question) {
+        try {
+            // 这里调用大模型的逻辑
+            // 1. 实例化改造后的 OptionalAPI 类
+            // 2. 调用其方法得到 AI 回复
 
-    public String getAnswerFromXunfei(String text,String service){
-        //调用讯飞的API的接口
-        //使用HttpClient发送请求，构造请求体，调用API,获取返回的答案
-        //根据API文档格式传递参数
-        String response = callXunFeiApi(text,service);
-        return parseXunfeiResponse(response);
-    }
+            OptionalAPI optionalAPI = new OptionalAPI();
+            // 设置问题
+            String answer = optionalAPI.askAi(question);
 
-    private String callXunFeiApi(String text,String service){
-        //这里调用讯飞Api的请求逻辑
-        //使用HttpClient发送post请求并获取结果
-        return "";
-    }
-    private String parseXunfeiResponse(String response){
-        return response;
+            return answer;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "AI服务调用出现异常: " + e.getMessage();
+        }
     }
 }

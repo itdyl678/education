@@ -47,7 +47,8 @@ public class SecurityConfig {
                         "/avatars/**",
                         "/course/**",
                         "/teacher/**",
-                        "/comments/**").permitAll() // 允许匿名访问的端点
+                        "/comments/**",
+                        "/api/**").permitAll() // 允许匿名访问的端点
                 .anyRequest().authenticated() // 其他端点需要认证
                 .and()
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class); // 添加 JWT 过滤器
