@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itflyket.education.mapper.CommentMapper">
+<select id="getCommentsWithUserInfo" resultMap="CommentWithUserMap">
+<!--    该查询是查询某个教师所有的评论信息（包括评论的用户部分信息）-->
+    select comment.id, comment.userId, comment.teacherId, comment.comment,
+    comment.rating, comment.createAt, comment.updatedAt, user.id AS user_id,
+    user.username AS user_name, user.avatar AS user_avatar from comments comment,users user
+    where comment.userId = user.id and comment.teacherId = #{teacherId}
+</select>
+
+    <resultMap id="CommentWithUserMap" type="com.itflyket.education.entity.Comment">
+        <result property="id" column="id"/>
+        <result property="userId" column="userId"/>
+        <result property="teacherId" column="teacherId"/>
+        <result property="comment" column="comment"/>
+        <result property="rating" column="rating"/>
+        <result property="createAt" column="createAt"/>
+        <result property="updatedAt" column="updatedAt"/>
+
+        <association property="userCommentDTO" javaType="com.itflyket.education.dto.UserCommentDTO">
+            <result property="id" column="user_id"/>
+            <result property="username" column="user_name"/>
+            <result property="avatar" column="user_avatar"/>
+        </association>
+    </resultMap>
+</mapper>

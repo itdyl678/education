@@ -1,5 +1,6 @@
 package com.itflyket.education.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.util.Date;
@@ -21,11 +22,14 @@ public class Course {
     private String detail;
     private String learningGoal;
 
+    @TableField(exist = false)
+    private Teacher teacher;
+
 
     public Course() {
     }
 
-    public Course(Integer id, String title, String description, Integer teacherId, Date createTime, Date updateTime, String rating, String category, String img, double price, int joinCount, String courseStartTime, String detail, String learningGoal) {
+    public Course(Integer id, String title, String description, Integer teacherId, Date createTime, Date updateTime, String rating, String category, String img, double price, int joinCount, String courseStartTime, String detail, String learningGoal, Teacher teacher) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -40,6 +44,7 @@ public class Course {
         this.courseStartTime = courseStartTime;
         this.detail = detail;
         this.learningGoal = learningGoal;
+        this.teacher = teacher;
     }
 
     /**
@@ -266,7 +271,23 @@ public class Course {
         this.learningGoal = learningGoal;
     }
 
+    /**
+     * 获取
+     * @return teacher
+     */
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    /**
+     * 设置
+     * @param teacher
+     */
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
+
     public String toString() {
-        return "Course{id = " + id + ", title = " + title + ", description = " + description + ", teacherId = " + teacherId + ", createTime = " + createTime + ", updateTime = " + updateTime + ", rating = " + rating + ", category = " + category + ", img = " + img + ", price = " + price + ", joinCount = " + joinCount + ", courseStartTime = " + courseStartTime + ", detail = " + detail + ", learningGoal = " + learningGoal + "}";
+        return "Course{id = " + id + ", title = " + title + ", description = " + description + ", teacherId = " + teacherId + ", createTime = " + createTime + ", updateTime = " + updateTime + ", rating = " + rating + ", category = " + category + ", img = " + img + ", price = " + price + ", joinCount = " + joinCount + ", courseStartTime = " + courseStartTime + ", detail = " + detail + ", learningGoal = " + learningGoal + ", teacher = " + teacher + "}";
     }
 }

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itflyket.education.mapper.CourseMapper">
+<select id="selectCourseWithInstructor" resultMap="CourseWithTeacherResultMap">
+    select c.*,t.id as tId,t.teacherName,t.subject,t.title as teacherTitle,
+    t.photo,t.detail AS teacherDetail,t.achievements
+    from courses c,teachers t where c.id = #{courseId} and c.teacherId=t.id
+</select>
+
+    <resultMap id="CourseWithTeacherResultMap" type="com.itflyket.education.entity.Course">
+        <id property="id" column="id" />
+        <result property="title" column="title" />
+        <result property="description" column="description" />
+        <result property="teacherId" column="teacherId" />
+        <result property="createTime" column="createTime" />
+        <result property="updateTime" column="updateTime" />
+        <result property="rating" column="rating" />
+        <result property="category" column="category" />
+        <result property="img" column="img" />
+        <result property="price" column="price" />
+        <result property="joinCount" column="joinCount" />
+        <result property="courseStartTime" column="courseStartTime" />
+        <result property="detail" column="detail" />
+        <result property="learningGoal" column="learningGoal" />
+
+        <!-- 关联的教师信息 -->
+        <association property="teacher" javaType="com.itflyket.education.entity.Teacher">
+            <id property="id" column="tId" />
+            <result property="teacherName" column="teacherName" />
+            <result property="subject" column="subject" />
+        <!-- 注意数据库中的列名不要重复，要使用别名，否则会出错-->
+            <result property="title" column="teacherTitle"/>
+            <result property="photo" column="photo" />
+            <result property="detail" column="teacherDetail" />
+            <result property="achievements" column="achievements" />
+        </association>
+    </resultMap>
+</mapper>
