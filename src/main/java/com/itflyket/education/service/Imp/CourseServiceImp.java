@@ -1,9 +1,12 @@
 package com.itflyket.education.service.Imp;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.itflyket.education.dto.CourseAndTeacherInfoDTO;
 import com.itflyket.education.dto.CourseDTO;
 import com.itflyket.education.entity.Course;
+import com.itflyket.education.entity.User;
 import com.itflyket.education.mapper.CourseMapper;
 import com.itflyket.education.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +48,23 @@ public class CourseServiceImp implements CourseService {
         }).collect(Collectors.toList()); // 将所有 DTO 收集为列表
     }
 
+    /**
+     * 后台访问课程管理时返回的课程分页查询
+     * @param currentPage
+     * @param pageSize
+     * @param search
+     * @return
+     */
+    public IPage<Course> getCoursePage(Integer currentPage, Integer pageSize, String search) {
+        Page<Course> page = new Page<>(currentPage, pageSize); // 创建分页对象，设置当前页和每页大小
+        QueryWrapper<Course> queryWrapper = new QueryWrapper<>(); // 创建查询条件包装器
+
+        // 如果有搜索条件，则根据用户名进行模糊查询
+        if (search != null && !search.trim().isEmpty()) {
+            queryWrapper.lambda().like(course -> course.getTitle(), search);
+        }
+        return courseMapper.selectPage(page,queryWrapper);// 执行分页查询
+    }
     /**
      * 根据评分前8名去展示用户的推荐课程
      * @return

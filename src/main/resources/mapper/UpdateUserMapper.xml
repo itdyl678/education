@@ -19,11 +19,12 @@
         </set>
         WHERE id = #{id}
     </update>
-
+<!--切换状态并改变其时间-->
     <update id="transForUser" parameterType="User">
         UPDATE users
         <set>
             <if test="status != null and status != ''">status = #{status},</if>
+            <if test="updatedAt != null">updatedAt = #{formattedUpdatedAt}</if>
         </set>
         WHERE id = #{id}
     </update>

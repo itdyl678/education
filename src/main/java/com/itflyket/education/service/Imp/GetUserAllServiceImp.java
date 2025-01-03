@@ -46,10 +46,15 @@ public class GetUserAllServiceImp implements GetUserAllService {
      * @param pageSize
      * @return
      */
-    public IPage<User> getUserPage(Integer currentPage, Integer pageSize) {
+    public IPage<User> getUserPage(Integer currentPage, Integer pageSize,String search) {
         Page<User> page = new Page<>(currentPage, pageSize); // 创建分页对象，设置当前页和每页大小
         QueryWrapper<User> queryWrapper = new QueryWrapper<>(); // 创建查询条件包装器
-        // 如果需要，可以在这里添加查询条件
+
+        // 如果有搜索条件，则根据用户名进行模糊查询
+        if (search != null && !search.trim().isEmpty()) {
+            queryWrapper.lambda().like(User::getUsername, search);
+        }
+
         return getUserAllMapper.selectPage(page, queryWrapper); // 执行分页查询
     }
 
