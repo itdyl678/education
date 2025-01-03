@@ -1,4 +1,5 @@
 package com.itflyket.education.controller.user;
+
 import com.itflyket.education.dto.LoginResponse;
 import com.itflyket.education.dto.UserDTO;
 import com.itflyket.education.entity.User;
@@ -11,7 +12,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 
@@ -27,9 +31,9 @@ public class UpdateUserController {
 
     @PutMapping("/updateUser/{id}")
 
-    public ResponseEntity<String> updateUser(@PathVariable Long id, @RequestBody UserDTO user){
+    public ResponseEntity<String> updateUser(@PathVariable Long id, @RequestBody UserDTO user) {
 
-        System.out.println("看看前端传过来的数据"+user);
+        System.out.println("看看前端传过来的数据" + user);
         // 将路径中的 id 设置到 user 对象中
         user.setId(id);
         //将本地时间放入user中进行存储
@@ -41,7 +45,7 @@ public class UpdateUserController {
         if (result > 0) {
             //更新后再调用接口从数据库中查询该用户的头像信息并返回给前端用来更新头像
             UserDTO userdto = userService.getUserById(id);
-            System.out.println("查看更新后的用户信息："+userdto);
+            System.out.println("查看更新后的用户信息：" + userdto);
             //查询用户的头像信息,注意：不要用索引去获取用户信息，因为数据库不鞥保证数据的完整性，可能有删除操作导致索引对接不上的情况
             String avatar = userdto.getAvatar();
             return ResponseEntity.ok(avatar);  // 返回成功的头像地址
@@ -53,13 +57,14 @@ public class UpdateUserController {
 
     /**
      * 用户状态的更新
+     *
      * @param id
      * @param user
      * @return
      */
-    @PutMapping ("/transForUser/{id}")
+    @PutMapping("/transForUser/{id}")
     @CrossOrigin
-    public ResponseEntity<String> transForUser(@PathVariable Long id,@RequestBody User user){
+    public ResponseEntity<String> transForUser(@PathVariable Long id, @RequestBody User user) throws ParseException {
         System.out.println("*****************************************");
         // 将路径中的 id 设置到 user 对象中
         user.setId(id);
@@ -70,6 +75,16 @@ public class UpdateUserController {
         } else if ("禁用".equals(user.getStatus())) {
             user.setStatus("0");  // 设置为 0 表示禁用
         }
+
+        // 格式化当前时间
+        Date now = new Date(); // 当前时间对象
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        // 格式化为字符串
+        String formattedTime = formatter.format(now);
+        // 将字符串解析回 Date 对象
+//        Date formattedDate = formatter.parse(formattedTime);
+        // 设置给 user
+        user.setFormattedUpdatedAt(formattedTime);
 
         // 调用 service 层进行更新操作
         int result = updateUserService.transForUser(user);
