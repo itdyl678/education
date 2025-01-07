@@ -10,6 +10,7 @@ import com.itflyket.education.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -52,5 +53,31 @@ public class TeacherServiceImp implements TeacherService {
             teacher.setComments(commentsWithUserInfo);  //将评论设置到教师对象中
         }
         return teacher;
+    }
+
+    /**
+     * 增加教师信息
+     * @param teacher
+     * @return
+     */
+    @Override
+    public int addTeacher(Teacher teacher) {
+        teacher.setCreatedTime(new Date()); //获取本地操作系统的时间
+        return this.teacherMapper.insert(teacher);
+    }
+
+    @Override
+    public int deleteById(Integer id) {
+        return this.teacherMapper.deleteById(id);
+    }
+
+    /**
+     * 修改教师信息
+     * @param teacher
+     * @return
+     */
+    @Override
+    public int updateTeacher(Teacher teacher) {
+        return this.teacherMapper.updateById(teacher);
     }
 }

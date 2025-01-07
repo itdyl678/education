@@ -20,4 +20,13 @@ public interface CourseService {
 
     //后台课程分页功能
     IPage<Course> getCoursePage(Integer currentPage, Integer pageSize, String search);
+
+    //添加课程信息
+    void addCourse(Course course);
+
+    //修改课程信息
+    int updateCourse(Course course);
+
+    //删除课程信息
+    int deleteById(Integer id);
 }
