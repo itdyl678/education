@@ -1,8 +1,11 @@
 package com.itflyket.education.service.Imp;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.itflyket.education.dto.UserCommentDTO;
 import com.itflyket.education.entity.Comment;
+import com.itflyket.education.entity.Course;
 import com.itflyket.education.entity.Teacher;
 import com.itflyket.education.mapper.CommentMapper;
 import com.itflyket.education.mapper.TeacherMapper;
@@ -79,5 +82,25 @@ public class TeacherServiceImp implements TeacherService {
     @Override
     public int updateTeacher(Teacher teacher) {
         return this.teacherMapper.updateById(teacher);
+    }
+
+    /**
+     * 教师后台分页逻辑
+     * @param currentPage
+     * @param pageSize
+     * @param search
+     * @return
+     */
+    @Override
+    public IPage<Teacher> getTeacherAll(Integer currentPage, Integer pageSize, String search) {
+        Page<Teacher> page = new Page<>(currentPage, pageSize); // 创建分页对象，设置当前页和每页大小
+        QueryWrapper<Teacher> queryWrapper = new QueryWrapper<>(); // 创建查询条件包装器
+
+        // 如果有搜索条件，则根据用户名进行模糊查询
+        if (search != null && !search.trim().isEmpty()) {
+            //mybatis-plus明确使用的是期望使用明确的 getter 方法引用字段，不能使用匿名内部类的形式，因为无法解析
+            queryWrapper.lambda().like(Teacher::getTeacherName, search);
+        }
+        return teacherMapper.selectPage(page,queryWrapper);// 执行分页查询
     }
 }

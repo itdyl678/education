@@ -9,11 +9,15 @@ import com.itflyket.education.mapper.GetUserAllMapper;
 
 import com.itflyket.education.service.Imp.GetUserAllServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -32,4 +36,16 @@ public class GetUserAllController {
         return  getUserAllServiceImp.getUserPage(currentPage, pageSize,search);
 
     }
+
+    /**
+     * 获取所有用户的年龄列表
+     * @return 所有用户的年龄列表
+     */
+    @GetMapping("/getAllAges")
+    public ResponseEntity<List<Integer>> getAllAges() {
+        List<Integer> userAge = getUserAllServiceImp.getUserAge();
+        return ResponseEntity.ok().body(userAge);
+
+    }
+
 }

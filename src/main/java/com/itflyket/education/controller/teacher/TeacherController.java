@@ -1,5 +1,6 @@
 package com.itflyket.education.controller.teacher;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.itflyket.education.entity.Teacher;
 import com.itflyket.education.result.ResponseResult;
 import com.itflyket.education.service.TeacherService;
@@ -32,6 +33,24 @@ public class TeacherController {
         }
     }
 
+    /**
+     * 后台获取教师分页逻辑代码
+     * @param currentPage
+     * @param pageSize
+     * @param search
+     * @return
+     */
+    @GetMapping("/getTeachersAll")
+    public ResponseEntity<?> getTeacherAll(@RequestParam(defaultValue = "1") Integer currentPage, // 当前页码，默认为1
+                                           @RequestParam(defaultValue = "5") Integer pageSize,
+                                           @RequestParam(required = false) String search){
+        IPage<Teacher> teacherAll = this.teacherService.getTeacherAll(currentPage, pageSize, search);
+        if (teacherAll != null){
+            return ResponseEntity.ok().body(teacherAll);
+        }else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("教师信息返回失败！");
+        }
+    }
     /**
      * 根据id获取教师的详细信息
      * @param id
@@ -83,6 +102,12 @@ public class TeacherController {
         }
     }
 
+    /**
+     * 修改教师信息
+     * @param id
+     * @param teacher
+     * @return
+     */
     @PutMapping("/updateTeacher/{id}")
     public ResponseEntity<String> updateTeacher(@PathVariable Integer id,@RequestBody Teacher teacher){
         teacher.setId(id);

@@ -1,5 +1,6 @@
 package com.itflyket.education.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.itflyket.education.entity.Teacher;
 
 import java.util.List;
@@ -38,4 +39,7 @@ public interface TeacherService {
      * @return
      */
     int updateTeacher(Teacher teacher);
+
+    //后台教师分页功能
+    IPage<Teacher> getTeacherAll(Integer currentPage, Integer pageSize, String search);
 }
