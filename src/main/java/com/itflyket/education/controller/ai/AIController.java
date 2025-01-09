@@ -36,6 +36,7 @@ public class AIController {
         String username = request.getUsername();
         System.out.println("输入的用户id和问题是：" +userId +", "+ question + ", " + username);
 
+        //问题非空判断
         if (question == null || question.trim().isEmpty()) {
             Map<String, Object> response = new HashMap<>();
             response.put("error", "问题不能为空");

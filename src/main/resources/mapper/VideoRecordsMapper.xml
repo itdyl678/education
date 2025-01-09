@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itflyket.education.mapper.VideoRecordsMapper">
+
+    <resultMap id="BaseResultMap" type="com.itflyket.education.entity.VideoRecords">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="videoName" column="video_name" jdbcType="VARCHAR"/>
+            <result property="videoUrl" column="video_url" jdbcType="VARCHAR"/>
+            <result property="userId" column="user_id" jdbcType="BIGINT"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="duration" column="duration" jdbcType="INTEGER"/>
+            <result property="size" column="size" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,video_name,video_url,
+        user_id,create_time,duration,
+        size
+    </sql>
+</mapper>

@@ -178,6 +178,11 @@
             <artifactId>jackson-datatype-jsr310</artifactId>
             <version>2.15.2</version> <!-- 确保版本与你使用的Jackson核心库版本相匹配 -->
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
 
     </dependencies>
 
