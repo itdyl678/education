@@ -12,6 +12,7 @@ import com.itflyket.education.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -61,7 +62,8 @@ public class CourseServiceImp implements CourseService {
 
         // 如果有搜索条件，则根据用户名进行模糊查询
         if (search != null && !search.trim().isEmpty()) {
-            queryWrapper.lambda().like(course -> course.getTitle(), search);
+            //mybatis-plus明确使用的是期望使用明确的 getter 方法引用字段，不能使用匿名内部类的形式，因为无法解析
+            queryWrapper.lambda().like(Course::getTitle, search).last("COLLATE utf8mb4_general_ci"); //不区分大小写
         }
         return courseMapper.selectPage(page,queryWrapper);// 执行分页查询
     }
@@ -130,4 +132,22 @@ public class CourseServiceImp implements CourseService {
         return courseAndTeacherInfoDTO;
     }
 
+    //添加课程信息
+    public void addCourse(Course course){
+        course.setCreateTime(new Date());
+        courseMapper.insert(course);
+    }
+
+    //修改课程信息
+    @Override
+    public int updateCourse(Course course) {
+        course.setUpdateTime(new Date());
+        return this.courseMapper.updateById(course);
+    }
+
+    //删除课程信息
+    @Override
+    public int deleteById(Integer id) {
+      return courseMapper.deleteById(id);
+    }
 }

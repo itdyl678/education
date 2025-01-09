@@ -6,6 +6,8 @@ import com.itflyket.education.dto.CourseDTO;
 import com.itflyket.education.entity.Course;
 import com.itflyket.education.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -55,8 +57,45 @@ public class CourseController {
        return topRatedCourse;
     }
 
+    /**
+     * 查看课程详细
+     * @param courseId
+     * @return
+     */
     @GetMapping("/{courseId}")
     public CourseAndTeacherInfoDTO selectCourseWithInstructor(@PathVariable Long courseId){
        return courseService.selectCourseWithInstructor(courseId);
+    }
+
+    /**
+     * 增加课程信息
+     * @param course
+     * @return
+     */
+    @PostMapping("/addCourse")
+    public ResponseEntity<String>addCourse(@RequestBody Course course){
+        this.courseService.addCourse(course);
+        return ResponseEntity.status(HttpStatus.CREATED).body("课程添加成功"); //返回数据给前端
+    }
+
+    @PutMapping("/updateCourse/{id}")
+    public ResponseEntity<String>updateCourse(@PathVariable Integer id,@RequestBody Course course){
+        course.setId(id);
+        int result = this.courseService.updateCourse(course);
+        if (result > 0){
+            return ResponseEntity.ok().body("课程修改成功");
+        }else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("课程信息未找到");
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String>deleteById(@PathVariable Integer id){
+        int result = courseService.deleteById(id);
+        if (result > 0){
+            return ResponseEntity.ok().body("删除课程信息成功！");
+        }else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("删除课程信息失败！");
+        }
     }
 }

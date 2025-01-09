@@ -13,10 +13,7 @@ public class DeleteUserByIdController {
     private DeleteUserByIdService deleteUserByIdService;
 
     @DeleteMapping("/{id}")
-
-
     @CrossOrigin
-
     public ResponseEntity<Void> deleteUserById(@PathVariable Long id){
         this.deleteUserByIdService.deleteUserById(id);
         return ResponseEntity.noContent().build();  //返回204， NO Content

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class GetUserAllServiceImp implements GetUserAllService {
@@ -39,6 +40,17 @@ public class GetUserAllServiceImp implements GetUserAllService {
 
         return users;
         }
+
+    /**
+     * 返回所有用户的年龄
+     * @return
+     */
+    @Override
+    public List<Integer> getUserAge() {
+        return this.getUserAllMapper.selectList(null).stream()
+                .map(User::getAge)
+                .collect(Collectors.toList());
+    }
 
     /**
      * 分页查询

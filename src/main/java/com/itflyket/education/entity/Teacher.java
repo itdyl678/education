@@ -2,6 +2,7 @@ package com.itflyket.education.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
 import java.util.List;
@@ -17,6 +18,7 @@ public class Teacher {
     private String achievements;
     private String detail;
     @TableField("createdTime")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createdTime;
     private String education;
     @TableField("teachingSubjects")

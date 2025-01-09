@@ -19,4 +19,5 @@ public interface CourseMapper extends BaseMapper<Course> {
 //            "t.photo,t.detail,t.achievements " +
 //            "from courses c,teachers t where c.id = #{courseId} and c.teacherId=t.id")
     Course selectCourseWithInstructor(Long courseId);
+
 }
