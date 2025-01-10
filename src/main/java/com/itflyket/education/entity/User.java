@@ -2,6 +2,7 @@ package com.itflyket.education.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
 
@@ -20,10 +21,12 @@ public class User {
     @TableField("idcard")  // 映射数据库中的字段名为 idcard
     private String idCard;
     @TableField("createdAt")  // 映射数据库中的字段名为 createdAt
+    @JsonFormat(pattern = "yyyy/M/d HH:mm:ss", timezone = "GMT+8")
     private Date createdAt; // 使用 Date 类型
     private String status;
     private String avatar;
     @TableField("updatedAt")  // 映射数据库中的字段名为 updatedAt
+    @JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss", timezone = "GMT+8")
     private Date updatedAt; // 使用 Date 类型
     // 新增的字段
     @TableField("createdAt")  // 映射数据库中的字段名为 createdAt

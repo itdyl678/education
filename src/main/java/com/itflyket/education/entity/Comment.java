@@ -2,11 +2,13 @@ package com.itflyket.education.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.itflyket.education.dto.UserCommentDTO;
 
 import java.time.LocalDateTime;
 import java.util.Date;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 @TableName("Comments")
 public class Comment {
     private Integer id;

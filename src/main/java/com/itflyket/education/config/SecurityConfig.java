@@ -46,6 +46,7 @@ public class SecurityConfig {
                         "/upload/avatar",
                         "/avatars/**",
                         "/course/**",
+                        "/teacher/**",
                         "/save-video/**",
                         "/comments/**",
                         "/api/**",

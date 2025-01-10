@@ -33,7 +33,7 @@ public class VideoController {
             }
             System.out.println("接收到的文件大小：" + file.getSize());
             // 定义保存目录
-            String uploadDir = "D:\\Idea_study\\gitee\\education\\video\\";  // 修改为你想存储的路径
+            String uploadDir = "D:\\Idea_study\\video\\";  // 修改为你想存储的路径
 
             // 获取当前日期，格式化为 "yyyy-MM-dd"
             String dateStamp = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
